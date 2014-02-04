@@ -1,4 +1,4 @@
-## zTooltip v1
+## zTooltip
 
 Example of using:
 ##### HTML
