@@ -3,13 +3,24 @@
 Example of using:
 ##### HTML
 ```html
-<div id="content">
-   <span id="tooltip_content_hello">I'm a tooltip</span>
-</div>
+
+<!-- Tooltip -->
+<span id="tooltip_content_hello">I'm a tooltip</span>
+
+<!-- Tooltip Content-->
+<span id="content_hello">
+	<h3>Content 1</h3>
+	<p>
+	 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, dignissimos,
+	 harum saepe consequuntur rem et enim numquam tenetur quaerat ex excepturi veniam
+	 voluptas eaque explicabo in debitis sed. Natus, quas?
+	</p>
+</span>
+
 ```
 ##### JAVASCRIPT
 ```javascript
-$('#content').tooltip({ events      : 'hover',
+$('body').tooltip({ events      : 'hover',
                         width       :  300,
                         position    : 'configurable',
                         bgcolor     : '#000',
