@@ -19,9 +19,9 @@
 
 	/* Init variables */
 	var getContent,
-		tooltipWidth,
-	 	tooltipThisWidth,
-	 	tooltipHeight,
+	    tooltipWidth,
+	    tooltipThisWidth,
+	    tooltipHeight,
 	    bottomPos,
 	    topPos,
 	    centerPos,
@@ -51,14 +51,14 @@
 
 		/* Config Tooltip */
 		var configPosition     = this.config.position,
-			configWidth        = this.config.width,
-			configBgColor      = this.config.bgcolor,
-			configTextColor    = this.config.textcolor,
-			configBoxShadow    = this.config.boxshadow,
-			configBorderRadius = this.config.borderadius,
-			configRightToLeft  = this.config.rightoleft,
-		 	configTextColor    = this.config.textcolor,
-		 	configEvents       = this.config.events;
+		    configWidth        = this.config.width,
+		    configBgColor      = this.config.bgcolor,
+		    configTextColor    = this.config.textcolor,
+		    configBoxShadow    = this.config.boxshadow,
+		    configBorderRadius = this.config.borderadius,
+		    configRightToLeft  = this.config.rightoleft,
+	 	    configTextColor    = this.config.textcolor,
+	 	    configEvents       = this.config.events;
 
 		/* Hide all tooltip content */
 		$('[id^="content_"]').hide();
@@ -147,12 +147,12 @@
 		function tooltipPos(left, top, valTop, valLeft) {
 
 			$('#tooltip-pos').css({ 'top'  : getTopPos(top, valTop),
-								    'left' : getLeftPos(left, valLeft) });
+					        'left' : getLeftPos(left, valLeft) });
 
-			$('#tooltip').css({ 'display' 		   : 'block',
-							    'width'   		   : configWidth,
-							    'background-color' : configBgColor,
-							    'color'   		   : configTextColor
+			$('#tooltip').css({ 'display'              : 'block',
+					     'width'   		   : configWidth,
+					     'background-color'    : configBgColor,
+					     'color'   		   : configTextColor
 							   
 			}).append('<span class="arrow '+configPosition+'"></span>');
 		}
@@ -177,14 +177,14 @@
 					case 'tooltip-top-center':
 						tooltipPos('top-center', 'top');
 						$('.arrow').css({'border-top-color' : configBgColor,
-										 'left'             : (tooltipWidth/2)+'px' });
+								 'left'             : (tooltipWidth/2)+'px' });
 					break;
 
 					/* Top Right */
 					case 'tooltip-top-right':
 						tooltipPos('top-right', 'top');
 						$('.arrow').css({'border-top-color' : configBgColor,
-										 'left'             : (tooltipWidth - 5)+'px' });
+								 'left'             : (tooltipWidth - 5)+'px' });
 					break;
 
 					/* Down */
@@ -197,14 +197,14 @@
 					case 'tooltip-down-center':
 						tooltipPos('down-center', 'down');
 						$('.arrow').css({'border-bottom-color': configBgColor,
-										 'left'			      : (tooltipWidth/2)+'px' });
+								 'left'		      : (tooltipWidth/2)+'px' });
 					break;
 
 					/* Down Right */
 					case 'tooltip-down-right':
 						tooltipPos('down-right', 'down');
 						$('.arrow').css({'border-bottom-color' : configBgColor,
-										 'left'                : (tooltipWidth - 5)+'px' });
+								 'left'                : (tooltipWidth - 5)+'px' });
 					break;
 
 					/* Right */
@@ -233,14 +233,14 @@
 						if (getTopCenterClass) {
 							tooltipPos('top-center', 'top');
 							$('.arrow').addClass('tooltip-top-center').removeClass('configurable').css({'border-top-color' : configBgColor,
-										 								           						'left'             : (tooltipWidth/2)+'px' });
+										 						    'left'             : (tooltipWidth/2)+'px' });
 						}
 
 						/* Top Right */
 						if (getTopRightClass) {
 							tooltipPos('top-right', 'top');
 							$('.arrow').addClass('tooltip-top-right').removeClass('configurable').css({'border-top-color' : configBgColor,
-											 							           					   'left'             : (tooltipWidth - 5)+'px' });
+											 					   'left'             : (tooltipWidth - 5)+'px' });
 						}
 
 						/* Down */
@@ -253,14 +253,14 @@
 						if (getDownCenterClass){
 							tooltipPos('down-center', 'down');
 							$('.arrow').addClass('tooltip-down-center').removeClass('configurable').css({'border-bottom-color' : configBgColor,
-										 								                                 'left'                : (tooltipWidth/2)+'px' });
+										 						     'left'                : (tooltipWidth/2)+'px' });
 						}
 
 						/* Down Right */
 						if (getDownRightClass){
 							tooltipPos('down-right', 'down');
 							$('.arrow').addClass('tooltip-down-right').removeClass('configurable').css({'border-bottom-color' : configBgColor,
-										 														        'left'                : (tooltipWidth - 5)+'px' });
+										 						    'left'                : (tooltipWidth - 5)+'px' });
 						}
 
 						/* Right */
@@ -300,11 +300,11 @@
 
 		/* Regx to Find class name */
 		getDownClass  		= /(tooltip-down)/i.exec($(this).attr('class'));
-		getDownCenterClass  = /(tooltip-down-center)/i.exec($(this).attr('class'));
-		getDownRightClass   = /(tooltip-down-right)/i.exec($(this).attr('class'));
+		getDownCenterClass      = /(tooltip-down-center)/i.exec($(this).attr('class'));
+		getDownRightClass       = /(tooltip-down-right)/i.exec($(this).attr('class'));
 		getTopClass  		= /(tooltip-top)/i.exec($(this).attr('class'));
-		getTopCenterClass   = /(tooltip-top-center)/i.exec($(this).attr('class'));
-		getTopRightClass    = /(tooltip-top-right)/i.exec($(this).attr('class'));
+		getTopCenterClass       = /(tooltip-top-center)/i.exec($(this).attr('class'));
+		getTopRightClass        = /(tooltip-top-right)/i.exec($(this).attr('class'));
 		getLeftClass  		= /(tooltip-left)/i.exec($(this).attr('class'));
 		getRightClass 		= /(tooltip-right)/i.exec($(this).attr('class'));
 
