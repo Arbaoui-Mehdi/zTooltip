@@ -1,55 +1,57 @@
 /*
-	zTooltip v1 | 2014-02-04
-	Tooltip jQuery plugin
-	Developed by Arbaoui Mehdi under the MIT license http://opensource.org/licenses/MIT
+  zTooltip v1 | 2014-02-04
+  Tooltip jQuery plugin
+  Developed by Arbaoui Mehdi under the MIT license http://opensource.org/licenses/MIT
 */
-;(function($){
 
-	/* Themes tooltip */
-	var themes = {
-		position    : 'tooltip-down',
-		events      : 'hover',
-		bgcolor     : false,
-		textcolor   : false,
-		width       : 200,
-		rightoleft  : false,
-		boxshadow   : false,
-		borderadius : false
-	}
+(function($) {
 
-	/* Init variables */
-	var getContent,
-	    tooltipWidth,
-	    tooltipThisWidth,
-	    tooltipHeight,
-	    bottomPos,
-	    topPos,
-	    centerPos,
-	    leftPos,
-	    getDownClass,
-	    getDownCenterClass,
-	    getDownRightClass,
-	    getTopClass,
-	    getTopCenterClass,
-	    getTopRightClass,
-	    getLeftClass,
-	    getRightClass;
+/* Themes tooltip */
+var themes = {
+    position    : 'tooltip-down',
+    events      : 'hover',
+    bgcolor     : false,
+    textcolor   : false,
+    width       : 200,
+    rightoleft  : false,
+    boxshadow   : false,
+    borderadius : false
+},
+    /* Init variables */
+    i,
+    getContent,
+    tooltipWidth,
+    tooltipThisWidth,
+    tooltipHeight,
+    bottomPos,
+    topPos,
+    centerPos,
+    leftPos,
+    getDownClass,
+    getDownCenterClass,
+    getDownRightClass,
+    getTopClass,
+    getTopCenterClass,
+    getTopRightClass,
+    getLeftClass,
+    getRightClass;
 
-	function Tooltip(element, options){
-		this.config = $.extend({},themes, options);
-		this.element = element;
-		this.init();
-	}
+    function Tooltip(element, options) {
+        this.config = $.extend({},themes, options);
+        this.element = element;
+        this.init();
+    }
+
 
 	Tooltip.prototype.init = function() {
 
-		/* Get all ids starting with tooltip_ */
+        /* Get all ids starting with tooltip_ */
 		var idTooltips = '[id^="tooltip_"]';
 
-		/* CSS3 Vendor Prefixes */
+        /* CSS3 Vendor Prefixes */
 		var prefixBrowsers = ['-moz-','-webkit-', '-o-', '-ms-',''];
 
-		/* Config Tooltip */
+        /* Config Tooltip */
 		var configPosition     = this.config.position,
 		    configWidth        = this.config.width,
 		    configBgColor      = this.config.bgcolor,
@@ -60,7 +62,7 @@
 	 	    configTextColor    = this.config.textcolor,
 	 	    configEvents       = this.config.events;
 
-		/* Hide all tooltip content */
+        /* Hide all tooltip content */
 		$('[id^="content_"]').hide();
 		$('body').append('<div id="tooltip-pos"></div>');
 
@@ -74,37 +76,37 @@
 		}).appendTo(this.element);
 		$('#tooltip').removeAttr('background direction bgcolor textcolor').removeClass('configurable').hide();
 
-		/* Correct IE6+ z-index */
+        /* Correct IE6+ z-index */
 		$('#tooltip').appendTo('#tooltip-pos');
 
-		/* If rightoleft is true */
+        /* If rightoleft is true */
 		if (configRightToLeft === true) {
-			$('#tooltip').removeClass('true').addClass('rtl');
+           $('#tooltip').removeClass('true').addClass('rtl');
 		}
 		else {
-			$('#tooltip').removeClass('false');
+           $('#tooltip').removeClass('false');
 		}
 
-		/* If "box-shadow" statut is true + Adding CSS3 Vendor Prefixes */
+        /* If "box-shadow" statut is true + Adding CSS3 Vendor Prefixes */
 		if (configBoxShadow !== false) {
-			for (i = 0; i < prefixBrowsers.length; i++){
-				$('#tooltip').css( prefixBrowsers[i]+'box-shadow', configBoxShadow.params+' '+configBoxShadow.color );
+            for (i = 0; i < prefixBrowsers.length; i +=1){
+				$('#tooltip').css( prefixBrowsers[i] + 'box-shadow', configBoxShadow.params+' '+configBoxShadow.color);
 			}
 		}
 
-		/* If "border-radius" statut is true + Adding CSS3 Vendor Prefixes */
+        /* If "border-radius" statut is true + Adding CSS3 Vendor Prefixes */
 		if (configBorderRadius !== false) {
-			for (i = 0; i < prefixBrowsers.length; i++) {
-				$('#tooltip').css ( prefixBrowsers[i]+'border-radius', configBorderRadius.size );
-			}
-		}
-		
-		/**
-		*
-		* Functions
-		* Names: getTopPos, getLeftPos, tooltipPos
-		*
-		**/
+            for (i = 0; i < prefixBrowsers.length; i +=1) {
+                $('#tooltip').css ( prefixBrowsers[i] + 'border-radius', configBorderRadius.size);
+            }
+        }
+
+        /**
+        *
+        * Functions
+        * Names: getTopPos, getLeftPos, tooltipPos
+        *
+        **/
 		function getTopPos(formula) {
 
 			if (formula === 'top') {
@@ -153,18 +155,18 @@
 					     'width'   		   : configWidth,
 					     'background-color'    : configBgColor,
 					     'color'   		   : configTextColor
-							   
+
 			}).append('<span class="arrow '+configPosition+'"></span>');
 		}
 
-		/**
-		*
-		* Positions
-		* Names: tooltip-top, tooltip-down, tooltip-right, tooltip-left
-		*
-		**/
+        /**
+        *
+        * Positions
+        * Names: tooltip-top, tooltip-down, tooltip-right, tooltip-left
+        *
+        **/
 		function allPositions(){
-				
+
 				switch(configPosition) {
 
 					/* Top */
@@ -223,71 +225,71 @@
 					/* Configurable option */
 					case 'configurable':
 
-						/* Top */
-						if (getTopClass && !getTopCenterClass && !getTopRightClass && !getTopRightClass) {
-							tooltipPos('top', 'top');
-							$('.arrow').addClass('tooltip-top').removeClass('configurable').css('border-top-color', configBgColor);
-						}
+                          /* Top */
+                          if (getTopClass && !getTopCenterClass && !getTopRightClass && !getTopRightClass) {
+                              tooltipPos('top', 'top');
+                              $('.arrow').addClass('tooltip-top').removeClass('configurable').css('border-top-color', configBgColor);
+                          }
 
-						/* Top Center */
-						if (getTopCenterClass) {
-							tooltipPos('top-center', 'top');
-							$('.arrow').addClass('tooltip-top-center').removeClass('configurable').css({'border-top-color' : configBgColor,
-										 						    'left'             : (tooltipWidth/2)+'px' });
-						}
+                          /* Top Center */
+                          if (getTopCenterClass) {
+                              tooltipPos('top-center', 'top');
+                              $('.arrow').addClass('tooltip-top-center').removeClass('configurable').css({ 'border-top-color' : configBgColor,
+                                                                                                           'left': (tooltipWidth/2)+'px' });
+                          }
 
-						/* Top Right */
-						if (getTopRightClass) {
-							tooltipPos('top-right', 'top');
-							$('.arrow').addClass('tooltip-top-right').removeClass('configurable').css({'border-top-color' : configBgColor,
-											 					   'left'             : (tooltipWidth - 5)+'px' });
-						}
+                          /* Top Right */
+                          if (getTopRightClass) {
+                              tooltipPos('top-right', 'top');
+                              $('.arrow').addClass('tooltip-top-right').removeClass('configurable').css({ 'border-top-color' : configBgColor,
+                                                                                                          'left': (tooltipWidth - 5)+'px' });
+                          }
 
-						/* Down */
-						if (getDownClass && !getDownCenterClass && !getDownRightClass){
-							tooltipPos('down', 'down');
-							$('.arrow').addClass('tooltip-down').removeClass('configurable').css('border-bottom-color', configBgColor);
-						}
+                          /* Down */
+                          if (getDownClass && !getDownCenterClass && !getDownRightClass){
+                              tooltipPos('down', 'down');
+                              $('.arrow').addClass('tooltip-down').removeClass('configurable').css('border-bottom-color', configBgColor);
+                          }
 
-						/* Down Center */
-						if (getDownCenterClass){
-							tooltipPos('down-center', 'down');
-							$('.arrow').addClass('tooltip-down-center').removeClass('configurable').css({'border-bottom-color' : configBgColor,
-										 						     'left'                : (tooltipWidth/2)+'px' });
-						}
+                          /* Down Center */
+                          if (getDownCenterClass){
+                              tooltipPos('down-center', 'down');
+                              $('.arrow').addClass('tooltip-down-center').removeClass('configurable').css({ 'border-bottom-color' : configBgColor,
+                                                                                                            'left': (tooltipWidth/2)+'px' });
+                          }
 
-						/* Down Right */
-						if (getDownRightClass){
-							tooltipPos('down-right', 'down');
-							$('.arrow').addClass('tooltip-down-right').removeClass('configurable').css({'border-bottom-color' : configBgColor,
-										 						    'left'                : (tooltipWidth - 5)+'px' });
-						}
+                          /* Down Right */
+                          if (getDownRightClass){
+                              tooltipPos('down-right', 'down');
+                              $('.arrow').addClass('tooltip-down-right').removeClass('configurable').css({ 'border-bottom-color' : configBgColor,
+                                                                                                           'left': (tooltipWidth - 5)+'px' });
+                          }
 
-						/* Right */
-						if (getRightClass){
-							tooltipPos('right', 'right');
-							$('.arrow').addClass('tooltip-right').removeClass('configurable').css('border-right-color', configBgColor);
-						}
+                          /* Right */
+                          if (getRightClass){
+                              tooltipPos('right', 'right');
+                              $('.arrow').addClass('tooltip-right').removeClass('configurable').css('border-right-color', configBgColor);
+                          }
 
-						/* Left */
-						if (getLeftClass){
-							tooltipPos('left', 'left');
-							$('.arrow').addClass('tooltip-left').removeClass('configurable').css('border-left-color', configBgColor);
-						}
+                          /* Left */
+                          if (getLeftClass){
+                              tooltipPos('left', 'left');
+                              $('.arrow').addClass('tooltip-left').removeClass('configurable').css('border-left-color', configBgColor);
+                          }
 
-						/* Default position, if class is not defined or empty */
-						if (!getLeftClass && !getRightClass && 
-							!getDownClass && !getDownCenterClass &&
-							!getDownRightClass && !getTopClass &&
-							!getTopCenterClass && !getTopRightClass || $(this).attr('class') === ''){
+                          /* Default position, if class is not defined or empty */
+                          if (!getLeftClass && !getRightClass && 
+                              !getDownClass && !getDownCenterClass &&
+                              !getDownRightClass && !getTopClass &&
+                              !getTopCenterClass && !getTopRightClass || $(this).attr('class') === ''){
 
-							tooltipPos('down', 'down');
-							$('.arrow').addClass('tooltip-down').removeClass('configurable').css('border-bottom-color', configBgColor);
-						}
+                              tooltipPos('down', 'down');
+                              $('.arrow').addClass('tooltip-down').removeClass('configurable').css('border-bottom-color', configBgColor);
+                          }
 
-					break;
-				}
-		}
+                    break;
+                }
+        }
 
 
 	/**
@@ -296,25 +298,24 @@
 	* click, move and hover
 	* 
 	**/
-	$(idTooltips).on('click mouseenter mouseleave mousemove', function(event){
+    $(idTooltips).on('click mouseenter mouseleave mousemove', function(event){
 
-		/* Regx to Find class name */
-		getDownClass  		= /(tooltip-down)/i.exec($(this).attr('class'));
-		getDownCenterClass      = /(tooltip-down-center)/i.exec($(this).attr('class'));
-		getDownRightClass       = /(tooltip-down-right)/i.exec($(this).attr('class'));
-		getTopClass  		= /(tooltip-top)/i.exec($(this).attr('class'));
-		getTopCenterClass       = /(tooltip-top-center)/i.exec($(this).attr('class'));
-		getTopRightClass        = /(tooltip-top-right)/i.exec($(this).attr('class'));
-		getLeftClass  		= /(tooltip-left)/i.exec($(this).attr('class'));
-		getRightClass 		= /(tooltip-right)/i.exec($(this).attr('class'));
+        /* Regx to Find class name */
+        getDownClass  		= /(tooltip-down)/i.exec($(this).attr('class'));
+        getDownCenterClass  = /(tooltip-down-center)/i.exec($(this).attr('class'));
+        getDownRightClass   = /(tooltip-down-right)/i.exec($(this).attr('class'));
+        getTopClass         = /(tooltip-top)/i.exec($(this).attr('class'));
+        getTopCenterClass   = /(tooltip-top-center)/i.exec($(this).attr('class'));
+        getTopRightClass    = /(tooltip-top-right)/i.exec($(this).attr('class'));
+        getLeftClass        = /(tooltip-left)/i.exec($(this).attr('class'));
+        getRightClass       = /(tooltip-right)/i.exec($(this).attr('class'));
 
-
-		/**
-		*
-		* Click Event
-		*
-		**/
-		if (event.type === 'click' && configEvents === 'click'){
+        /**
+        *
+        * Click Event
+        *
+        **/
+		if (event.type === 'click' && configEvents === 'click') {
 
 			/* Remove content and arrow */
 			$('#tooltip [id^="content_"], .arrow').remove();
@@ -329,94 +330,91 @@
 			bottomPos           = $(this).offset().top + $(this).outerHeight();
 			topPos              = $(this).offset().top;
 			centerPos           = $(this).offset().top + ($(this).outerHeight() / 2);
-			leftPos      	    = $(this).offset().left;
+			leftPos             = $(this).offset().left;
 
 			/* Get positions */
 			allPositions();
 		}
 
+        /**
+        *
+        * Hover Event
+        *
+        **/
+		if (event.type === 'mouseenter' && configEvents === 'hover') {
 
-		/**
-		*
-		* Hover Event
-		*
-		**/
-		if (event.type === 'mouseenter' && configEvents === 'hover'){
+            /* Get Id of content and get content */
+            getContent = $('#' + $(this).attr('id').replace(/(\w+)_(\w+)_(\w+)/, '$2_$3')).clone().appendTo('#tooltip').show();
 
-			/* Get Id of content and get content */
-			getContent = $('#'+$(this).attr('id').replace(/(\w+)_(\w+)_(\w+)/, '$2_$3')).clone().appendTo('#tooltip').show();
+            /* Get width, position (top and left) of the selected */
+            tooltipThisWidth    = $(this).outerWidth();
+            tooltipWidth        = parseInt($('#tooltip').css('width'));
+            tooltipHeight       = $('#tooltip').height();
+            bottomPos           = $(this).offset().top + $(this).outerHeight();
+            topPos              = $(this).offset().top;
+            centerPos           = $(this).offset().top + ($(this).outerHeight() / 2);
+            leftPos      	    = $(this).offset().left;
 
-			/* Get width, position (top and left) of the selected */
-			tooltipThisWidth    = $(this).outerWidth();
-			tooltipWidth        = parseInt($('#tooltip').css('width'));
-			tooltipHeight       = $('#tooltip').height();
-			bottomPos           = $(this).offset().top + $(this).outerHeight();
-			topPos              = $(this).offset().top;
-			centerPos           = $(this).offset().top + ($(this).outerHeight() / 2);
-			leftPos      	    = $(this).offset().left;
-
-			/* Get positions */
-			allPositions();
+            /* Get positions */
+            allPositions();
 		}
 
-
-		/**
-		*
-		* Hover Event : Mouse leave
-		*
-		**/
-		if (event.type === 'mouseleave' && configEvents === 'hover'){
-			$('#tooltip').hide();
-			$('#tooltip [id^="content_"], .arrow').remove();
-		}
-
+        /**
+        *
+        * Hover Event : Mouse leave
+        *
+        **/
+        if (event.type === 'mouseleave' && configEvents === 'hover') {
+            $('#tooltip').hide();
+            $('#tooltip [id^="content_"], .arrow').remove();
+        }
 
 		/**
 		*
 		* Tooltip move with cursor
 		*
 		**/
-		if (event.type === 'mouseenter' && configEvents === 'move'){
-			
-			/* Get Id of content and get content */
-			getContent = $('#'+$(this).attr('id').replace(/(\w+)_(\w+)_(\w+)/, '$2_$3')).clone().appendTo('#tooltip').show();
+        if (event.type === 'mouseenter' && configEvents === 'move') {
 
-			/* Get width, position (top and left) of the selected */
-			tooltipThisWidth    = $(this).outerWidth();
-			tooltipWidth        = parseInt($('#tooltip').css('width'));
-			tooltipHeight       = $('#tooltip').height();
-			bottomPos           = $(this).offset().top + $(this).outerHeight();
-			topPos              = $(this).offset().top;
-			centerPos           = $(this).offset().top + ($(this).outerHeight() / 2);
-			leftPos      	    = $(this).offset().left;
+            /* Get Id of content and get content */
+            getContent = $('#'+$(this).attr('id').replace(/(\w+)_(\w+)_(\w+)/, '$2_$3')).clone().appendTo('#tooltip').show();
 
-			/* Get positions */
-			allPositions();
+            /* Get width, position (top and left) of the selected */
+            tooltipThisWidth    = $(this).outerWidth();
+            tooltipWidth        = parseInt($('#tooltip').css('width'));
+            tooltipHeight       = $('#tooltip').height();
+            bottomPos           = $(this).offset().top + $(this).outerHeight();
+            topPos              = $(this).offset().top;
+            centerPos           = $(this).offset().top + ($(this).outerHeight() / 2);
+            leftPos      	    = $(this).offset().left;
 
-			/* Remove arrow */
-			$('.arrow').remove();
+            /* Get positions */
+            allPositions();
+
+            /* Remove arrow */
+            $('.arrow').remove();
 		}
 
-		if (event.type === 'mousemove' && configEvents === 'move'){
-			$('#tooltip-pos').css({
-				left:  event.pageX - 30,
-				top:   event.pageY - tooltipHeight - 30
-			});
-		}
+		if (event.type === 'mousemove' && configEvents === 'move') {
+            $('#tooltip-pos').css({
+                left : event.pageX - 30,
+                top  : event.pageY - tooltipHeight - 30
+            });
+        }
 
-		if (event.type === 'mouseleave' && configEvents === 'move'){
-			$('#tooltip').hide();
-			$('#tooltip [id^="content_"]').remove();
-		}
+        if (event.type === 'mouseleave' && configEvents === 'move') {
+            $('#tooltip').hide();
+            $('#tooltip [id^="content_"]').remove();
+        }
 
-	});
+    });
 
-	};
+    };
 
-	/* Return values */
-	$.fn.tooltip = function(options){
-		new Tooltip(this, options);
-		return this;
-	};
+    /* Return values */
+    $.fn.tooltip = function(options){
+        new Tooltip(this, options);
+        return this;
+    };
 
 }(jQuery));
