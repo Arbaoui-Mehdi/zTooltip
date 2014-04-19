@@ -20,7 +20,7 @@ Example of using:
 ```
 ##### JAVASCRIPT
 ```javascript
-$('body').tooltip({ events      : 'hover',
+$('body').tooltip({ events      : 'click',
                     width       :  300,
                     position    : 'configurable',
                     bgcolor     : '#000',
