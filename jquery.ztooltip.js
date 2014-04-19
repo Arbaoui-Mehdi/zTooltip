@@ -10,7 +10,7 @@
     var themes = {
         position    : 'tooltip-down',
         events      : 'hover',
-        bgcolor     : false,
+        bgcolor     : true,
         textcolor   : false,
         width       : 200,
         rightoleft  : false,
